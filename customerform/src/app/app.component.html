@@ -1,0 +1,70 @@
+<div class="main-content">
+
+  <form class="form-basic" method="post" action="#">
+
+    <div class="form-title-row">
+      <h1>Form Example</h1>
+    </div>
+
+    <div class="form-row">
+      <label>
+        <span>Full name</span>
+        <input type="text" name="name" required>
+      </label>
+    </div>
+
+    <div class="form-row">
+          <label>
+            <span>Date of Birth</span>
+            <input placeholder="yyyy-mm-dd" name="birth" [ngModel]="birth" ngbDatepicker #b="ngbDatepicker" (click)="b.toggle()" required>
+          </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        <span>Phone</span>
+        <input type="number" name="phone" required>
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        <span>Schedule Datetime</span>
+        <input placeholder="yyyy-mm-dd" name="date" [ngModel]="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" required>
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        <span>Select City</span>
+        <select [(ngModel)]="selectedCity" name="city" (change)="onChange($event.target.value)" required>
+          <option *ngFor="let city of this.cityArr" [value]="city.id">{{city.name}}</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-row" *ngIf="selectedCity">
+      <label>
+        <span>Select District</span>
+        <select [(ngModel)]="selectedDistrict" name="district" required>
+          <option *ngFor="let d of this.dis" [value]="d.id">{{d.name}}</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        <span>Notes</span>
+        <textarea name="notes" required></textarea>
+      </label>
+    </div>
+
+    <div class="form-row">
+      <button type="submit">Submit Form</button>
+    </div>
+
+  </form>
+
+</div>
+
+<router-outlet></router-outlet>
