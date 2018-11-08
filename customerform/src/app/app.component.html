@@ -1,36 +1,36 @@
 <div class="main-content">
 
-  <form class="form-basic" method="post" action="#">
+  <form class="form-basic" (ngSubmit)="postCustomer(customer.ScheduleTime, customer.DateOfBirth, customer.DistrictId)" method="post">
 
     <div class="form-title-row">
-      <h1>Form Example</h1>
+      <h1>Customer Registration</h1>
     </div>
 
     <div class="form-row">
       <label>
         <span>Full name</span>
-        <input type="text" name="name" required>
+        <input type="text" name="name" [(ngModel)]="customer.FullName" id="name" required>
       </label>
     </div>
 
     <div class="form-row">
           <label>
             <span>Date of Birth</span>
-            <input placeholder="yyyy-mm-dd" name="birth" [ngModel]="birth" ngbDatepicker #b="ngbDatepicker" (click)="b.toggle()" required>
+            <input placeholder="yyyy-mm-dd" [(ngModel)]="customer.DateOfBirth" [maxDate]="minDate" name="birth" ngbDatepicker #b="ngbDatepicker" (click)="b.toggle()" required>
           </label>
     </div>
 
     <div class="form-row">
       <label>
         <span>Phone</span>
-        <input type="number" name="phone" required>
+        <input type="text" [(ngModel)]="customer.Phone" maxlength="11" minlength="0" pattern="[0-9]{11}"  placeholder="0555-555-55-55" name="phone" required>
       </label>
     </div>
 
     <div class="form-row">
       <label>
         <span>Schedule Datetime</span>
-        <input placeholder="yyyy-mm-dd" name="date" [ngModel]="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" required>
+        <input placeholder="yyyy-mm-dd" [(ngModel)]="customer.ScheduleTime" [minDate]="minDate" name="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" required>
       </label>
     </div>
 
@@ -46,7 +46,7 @@
     <div class="form-row" *ngIf="selectedCity">
       <label>
         <span>Select District</span>
-        <select [(ngModel)]="selectedDistrict" name="district" required>
+        <select [(ngModel)]="customer.DistrictId" name="district" required>
           <option *ngFor="let d of this.dis" [value]="d.id">{{d.name}}</option>
         </select>
       </label>
@@ -55,16 +55,16 @@
     <div class="form-row">
       <label>
         <span>Notes</span>
-        <textarea name="notes" required></textarea>
+        <textarea [(ngModel)]="customer.Notes" name="notes" required></textarea>
       </label>
     </div>
 
     <div class="form-row">
-      <button type="submit">Submit Form</button>
+      <button type="submit">Submit</button>
     </div>
 
   </form>
-
 </div>
+
 
 <router-outlet></router-outlet>

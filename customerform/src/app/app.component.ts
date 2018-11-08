@@ -1,29 +1,32 @@
 import { Component } from '@angular/core';
 import { DatepickerOptions } from "ng2-datepicker";
 import { ProviderService} from "../service/provider.service";
-
+import {Customer} from "../model/customer";
+import { DatePipe } from "@angular/common";
+import * as moment from 'moment';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  date: Date;
-  birth: Date;
+  now: Date = new Date();
+  minDate: any;
   data = [];
   cityArr=[];
   selectedCity:string;
-  selectedDistrict:string;
   districtsArr = [];
   dis:any;
-
   customerInfo:any;
 
-  constructor(private service: ProviderService) {
-    this.date = new Date();
-    this.birth = new Date();
+  constructor(private service: ProviderService,
+              private customer: Customer) {
+
     this.districtsArr = this.districtsArr;
+    this.minDate = { year: this.now.getFullYear(), month: this.now.getMonth() + 1, day: this.now.getDate() };
+
   }
+
 
   ngOnInit(){
     this.getCity();
@@ -59,10 +62,23 @@ export class AppComponent {
     }
   }
 
-  postCity(){
+  postCustomer(sch,birth,dId){
+
+    this.customer.DateOfBirth = birth;
+    this.customer.ScheduleTime = sch;
+
+    this.customer.DateOfBirth =  moment().format('YYYY-MM-DDThh:mm:ss');
+    this.customer.ScheduleTime =  moment().format('YYYY-MM-DDThh:mm:ss');
+
+    this.customer.DistrictId = Number(dId);
+
+    this.customerInfo = this.customer;
+    console.log(this.customer.DateOfBirth);
+
+
     this.service.postCustomerService(this.customerInfo)
       .then(res =>{
-        console.log(res);
+        this.data = [res];
       })
   }
 

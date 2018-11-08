@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatIconModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 import {ApiConfig} from "../service/apiConfig";
 import {ProviderService} from "../service/provider.service";
+import {Customer} from "../model/customer";
+import {DatePipe} from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent
@@ -32,7 +34,9 @@ import {ProviderService} from "../service/provider.service";
   ],
   providers: [
     ApiConfig,
-    ProviderService
+    ProviderService,
+    Customer,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
