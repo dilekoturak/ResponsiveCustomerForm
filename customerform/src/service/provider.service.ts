@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ApiConfig} from "./apiConfig";
 
 @Injectable({
@@ -27,8 +27,12 @@ export class ProviderService {
   }
 
   postCustomerService(creds){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'text/javascript'
+    });
     return new Promise((resolve,reject) => {
-      this.http.post(this.url.customerURL + '/customer/schedule', JSON.stringify(creds))
+      this.http.post(this.url.customerURL + '/customer/schedule', JSON.stringify(creds),{headers: headers})
         .subscribe(response => {
           resolve(response);
         }, (err) => {

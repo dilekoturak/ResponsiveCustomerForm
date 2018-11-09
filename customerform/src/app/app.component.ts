@@ -3,7 +3,8 @@ import { DatepickerOptions } from "ng2-datepicker";
 import { ProviderService} from "../service/provider.service";
 import {Customer} from "../model/customer";
 import { DatePipe } from "@angular/common";
-import * as moment from 'moment';
+import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,7 +21,8 @@ export class AppComponent {
   customerInfo:any;
 
   constructor(private service: ProviderService,
-              private customer: Customer) {
+              private customer: Customer,
+              private formatter: NgbDateParserFormatter) {
 
     this.districtsArr = this.districtsArr;
     this.minDate = { year: this.now.getFullYear(), month: this.now.getMonth() + 1, day: this.now.getDate() };
@@ -64,14 +66,16 @@ export class AppComponent {
 
   postCustomer(sch,birth,dId){
 
-    this.customer.DateOfBirth = birth;
-    this.customer.ScheduleTime = sch;
 
-    this.customer.DateOfBirth =  moment().format('YYYY-MM-DDThh:mm:ss');
-    this.customer.ScheduleTime =  moment().format('YYYY-MM-DDThh:mm:ss');
+    let birthDay = this.formatter.format(birth);
+    let scheduleDay = this.formatter.format(sch);
+    this.customer.DateOfBirth = birthDay + 'T00:00:00';
+    this.customer.ScheduleTime = scheduleDay +'T00:00:00';
 
     this.customer.DistrictId = Number(dId);
 
+    console.log(this.customer.DateOfBirth);
+    console.log(this.customer.ScheduleTime);
     this.customerInfo = this.customer;
     console.log(this.customer.DateOfBirth);
 
