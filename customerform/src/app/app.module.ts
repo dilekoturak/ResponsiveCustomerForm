@@ -5,14 +5,10 @@ import { NgDatepickerModule } from 'ng2-datepicker';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import {ReactiveFormsModule} from "@angular/forms";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatIconModule, MatSelectModule, MatToolbarModule } from '@angular/material';
 import {ApiConfig} from "../service/apiConfig";
 import {ProviderService} from "../service/provider.service";
 import {Customer} from "../model/customer";
-import {DatePipe} from "@angular/common";
+import { NgxLoadingModule } from 'ngx-loading';
 @NgModule({
   declarations: [
     AppComponent
@@ -23,20 +19,12 @@ import {DatePipe} from "@angular/common";
     NgbModule,
     NgDatepickerModule,
     HttpClientModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatSelectModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatIconModule,
-    NgxMatSelectSearchModule
+    NgxLoadingModule.forRoot({})
   ],
   providers: [
     ApiConfig,
     ProviderService,
     Customer,
-    DatePipe
   ],
   bootstrap: [AppComponent]
 })

@@ -17,7 +17,7 @@ export class ProviderService {
 
   getCityService(){
     return new Promise((resolve,reject) => {
-      this.http.get(this.url.cityURL + '/city')
+      this.http.get(this.url.cityURL + '/cities')
         .subscribe(response => {
           resolve(response);
         }, (err) => {
@@ -37,7 +37,6 @@ export class ProviderService {
           resolve(response);
         }, (err) => {
           reject(err);
-          console.log("diley");
         });
     });
   }

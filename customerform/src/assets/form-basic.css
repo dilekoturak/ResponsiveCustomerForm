@@ -3,11 +3,8 @@ html{
 }
 
 .form-basic{
-    max-width: 640px;
     margin: 0 auto;
     padding: 55px;
-    box-sizing: border-box;
-
     background-color:  #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 
@@ -38,8 +35,6 @@ html{
 }
 
 .form-basic .form-row > label span{
-    display: inline-block;
-    box-sizing: border-box;
     color: #5F5F5F;
     width: 180px;
     text-align: right;

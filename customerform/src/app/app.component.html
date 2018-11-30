@@ -1,70 +1,79 @@
-<div class="main-content">
+<div class="container">
+  <form   #form="ngForm" style="margin: 50px; border: 1px solid #f3f3f3; background: #f5f5f5; min-width: 400px" (ngSubmit)="postCustomer(customer.ScheduleTime, customer.DateOfBirth, customer.DistrictId)" method="post">
 
-  <form class="form-basic" (ngSubmit)="postCustomer(customer.ScheduleTime, customer.DateOfBirth, customer.DistrictId)" method="post">
-
-    <div class="form-title-row">
-      <h1>Customer Registration</h1>
+    <div class="row" style="margin: 50px; text-align: center">
+      <div class="col">
+        <h1 style="color: #5f5f5f;font-family: arial">Customer Registration</h1>
+      </div>
     </div>
+        <div class="row" style="margin: 30px;text-align: center">
+          <div class="col">
+            <label style="color: #5f5f5f ">Full Name</label>
+          </div>
+          <div class="col">
+            <input type="text" name="name" [(ngModel)]="customer.FullName" id="name" required>
+          </div>
 
-    <div class="form-row">
-      <label>
-        <span>Full name</span>
-        <input type="text" name="name" [(ngModel)]="customer.FullName" id="name" required>
-      </label>
-    </div>
-
-    <div class="form-row">
-          <label>
-            <span>Date of Birth</span>
+        </div>
+        <div class="row" style="margin: 30px;text-align: center">
+          <div class="col">
+            <label style="color: #5f5f5f">Date of Birth</label>
+          </div>
+          <div class="col">
             <input placeholder="yyyy-mm-dd" [(ngModel)]="customer.DateOfBirth" [maxDate]="minDate" name="birth" ngbDatepicker #b="ngbDatepicker" (click)="b.toggle()" required>
-          </label>
-    </div>
+          </div>
+        </div>
 
-    <div class="form-row">
-      <label>
-        <span>Phone</span>
+    <div class="row" style="margin:30px;text-align: center">
+      <div class="col">
+        <label style="color: #5f5f5f" >Phone</label>
+      </div>
+      <div class="col">
         <input type="text" [(ngModel)]="customer.Phone" maxlength="11" minlength="0" pattern="[0-9]{11}"  placeholder="0555-555-55-55" name="phone" required>
-      </label>
+      </div>
     </div>
-
-    <div class="form-row">
-      <label>
-        <span>Schedule Datetime</span>
+    <div class="row" style="margin: 30px;text-align: center">
+      <div class="col">
+        <label style="color: #5f5f5f" >Schedule Datetime</label>
+      </div>
+      <div class="col">
         <input placeholder="yyyy-mm-dd" [(ngModel)]="customer.ScheduleTime" [minDate]="minDate" name="date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" required>
-      </label>
+      </div>
     </div>
-
-    <div class="form-row">
-      <label>
-        <span>Select City</span>
+    <div class="row" style="margin: 30px;text-align: center">
+      <div class="col">
+        <label style="color: #5f5f5f" >Select City</label>
+      </div>
+      <div class="col">
         <select [(ngModel)]="selectedCity" name="city" (change)="onChange($event.target.value)" required>
           <option *ngFor="let city of this.cityArr" [value]="city.id">{{city.name}}</option>
         </select>
-      </label>
+      </div>
     </div>
-
-    <div class="form-row" *ngIf="selectedCity">
-      <label>
-        <span>Select District</span>
+    <div class="row"  style="margin: 30px;text-align: center" *ngIf="selectedCity">
+      <div class="col">
+        <label style="color: #5f5f5f" >Select District</label>
+      </div>
+      <div class="col">
         <select [(ngModel)]="customer.DistrictId" name="district" required>
           <option *ngFor="let d of this.dis" [value]="d.id">{{d.name}}</option>
         </select>
-      </label>
+      </div>
     </div>
-
-    <div class="form-row">
-      <label>
-        <span>Notes</span>
+    <div class="row" style="margin: 30px;text-align: center">
+      <div class="col">
+        <label style="color: #5f5f5f" >Notes</label>
+      </div>
+      <div class="col">
         <textarea [(ngModel)]="customer.Notes" name="notes" required></textarea>
-      </label>
+      </div>
     </div>
-
-    <div class="form-row">
-      <button type="submit">Submit</button>
+    <div class="row" style="margin: 50px;text-align: center">
+      <div class="col">
+        <button class="button" type="submit" [disabled]="!form.valid">Submit</button>
+      </div>
     </div>
-
   </form>
 </div>
-
 
 <router-outlet></router-outlet>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { DatepickerOptions } from "ng2-datepicker";
 import { ProviderService} from "../service/provider.service";
 import {Customer} from "../model/customer";
-import { DatePipe } from "@angular/common";
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -51,7 +50,6 @@ export class AppComponent {
   }
 
   onChange(id) {
-    console.log(id);
     for(let city of this.cityArr){
         if(city.id == id){
           this.dis = [];
@@ -65,8 +63,6 @@ export class AppComponent {
   }
 
   postCustomer(sch,birth,dId){
-
-
     let birthDay = this.formatter.format(birth);
     let scheduleDay = this.formatter.format(sch);
     this.customer.DateOfBirth = birthDay + 'T00:00:00';
@@ -77,7 +73,7 @@ export class AppComponent {
     console.log(this.customer.DateOfBirth);
     console.log(this.customer.ScheduleTime);
     this.customerInfo = this.customer;
-    console.log(this.customer.DateOfBirth);
+    console.log(this.customerInfo);
 
 
     this.service.postCustomerService(this.customerInfo)
