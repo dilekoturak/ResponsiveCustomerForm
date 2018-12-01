@@ -3,7 +3,6 @@ import { DatepickerOptions } from "ng2-datepicker";
 import { ProviderService} from "../service/provider.service";
 import {Customer} from "../model/customer";
 import {NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,6 +27,9 @@ export class AppComponent {
 
   }
 
+  onOpen(event: any) {
+    console.log(event);
+  }
 
   ngOnInit(){
     this.getCity();

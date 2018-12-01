@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import {ApiConfig} from "../service/apiConfig";
 import {ProviderService} from "../service/provider.service";
 import {Customer} from "../model/customer";
-import { NgxLoadingModule } from 'ngx-loading';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +20,7 @@ import { NgxLoadingModule } from 'ngx-loading';
     NgbModule,
     NgDatepickerModule,
     HttpClientModule,
-    NgxLoadingModule.forRoot({})
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     ApiConfig,

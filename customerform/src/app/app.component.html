@@ -1,5 +1,5 @@
 <div class="container">
-  <form   #form="ngForm" style="margin: 50px; border: 1px solid #f5f5f5; background: #ffffff;border-top: 3px solid #46afb9; min-width: 400px" (ngSubmit)="postCustomer(customer.ScheduleTime, customer.DateOfBirth, customer.DistrictId)" method="post">
+  <form   #form="ngForm" style="margin: 50px; border: 1px solid #f5f5f5; background: #ffffff;border-top: 3px solid #46afb9; border-bottom: 3px solid #46afb9; min-width: 400px" (ngSubmit)="postCustomer(customer.ScheduleTime, customer.DateOfBirth, customer.DistrictId)" method="post">
 
     <div class="row" style="margin: 50px; text-align: center">
       <div class="col">
@@ -70,10 +70,23 @@
     </div>
     <div class="row" style="margin: 50px;text-align: center">
       <div class="col">
-        <button class="button" type="submit" [disabled]="!form.valid">Submit</button>
+        <button class="button" type="submit" mdbBtn mdbWavesEffect [disabled]="!form.valid" (click)="frame.show()">Submit</button>
       </div>
     </div>
   </form>
 </div>
-
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" (open)="onOpen($event)">
+  <div class="modal-dialog modal-notify modal-success" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div  style="text-align: center" class="modal-header">
+        <img src="../assets/us.png">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+  </div>
+</div>
 <router-outlet></router-outlet>
